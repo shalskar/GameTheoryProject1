@@ -1,4 +1,3 @@
-import com.sun.javafx.beans.annotations.NonNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,7 +17,7 @@ public class Game {
     private String[][] actions;
     private int[][][] values;
 
-    public Game(@NonNull List<String> agents, String[][] actions, int[][][] values) {
+    public Game(List<String> agents, String[][] actions, int[][][] values) {
         this.agents = agents;
         this.actions = actions;
         this.values = values;
@@ -54,7 +53,7 @@ public class Game {
      * @param json String with JSON format
      * @return A game object
      */
-    public static Game createGameFromJSON(@NonNull String json) {
+    public static Game createGameFromJSON(String json) {
         JSONObject gameJSONObject = new JSONObject(json);
         List<String> agents = parseAgents(gameJSONObject);
         String[][] actions = parseActions(gameJSONObject);
@@ -65,7 +64,7 @@ public class Game {
 
     /** Static parsing methods. **/
 
-    private static List<String> parseAgents(@NonNull JSONObject jsonObject){
+    private static List<String> parseAgents(JSONObject jsonObject){
         List<String> agents = new ArrayList<>();
         JSONArray agentsJSONArray = jsonObject.getJSONArray(KEY_AGENTS);
         for (int i = 0; i < agentsJSONArray.length(); i++) {
@@ -74,7 +73,7 @@ public class Game {
         return agents;
     }
 
-    private static String[][] parseActions(@NonNull JSONObject jsonObject){
+    private static String[][] parseActions(JSONObject jsonObject){
         JSONArray actionsOuterJSONArray = jsonObject.getJSONArray(KEY_ACTIONS);
         String[][] actions = new String[actionsOuterJSONArray.length()][actionsOuterJSONArray.getJSONArray(0).length()];
 
@@ -89,7 +88,7 @@ public class Game {
         return actions;
     }
 
-    private static int[][][] parseValues(@NonNull JSONObject jsonObject){
+    private static int[][][] parseValues(JSONObject jsonObject){
         int agentCount = jsonObject.getJSONArray(KEY_AGENTS).length();
         JSONArray valuesOuterJSONArray = jsonObject.getJSONArray(KEY_VALUES);
         int[][][] values = new int[valuesOuterJSONArray.length()][valuesOuterJSONArray.getJSONArray(0).length()][agentCount];
