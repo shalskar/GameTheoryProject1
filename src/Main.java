@@ -22,9 +22,13 @@ public class Main {
             printSupportSets(game);
 
         try {
+            // lp solve for player 1
             LpSolve lpSolve = LpSolve.makeLp(game.getActions().length, game.getActions()[0].length);
+            // set column names
+            for(int i = 0; i < game.getActions()[0].length; i ++)
+                lpSolve.setColName(i + 1, game.getActions()[0][i]);
 
-            //lpSolve.strAddConstraint();
+
         } catch (LpSolveException e) {
             e.printStackTrace();
         }
